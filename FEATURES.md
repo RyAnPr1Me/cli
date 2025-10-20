@@ -306,13 +306,17 @@ User space refers to the portion of system memory and resources that are accessi
 
 ### Cross-Platform
 While designed for macOS, most features work on:
-- Linux
-- Unix-like systems
-- WSL on Windows (some features)
+- Linux (full compatibility)
+- Unix-like systems (full compatibility)
+- WSL on Windows (most features work)
+  - Note: macOS-specific clipboard operations (pbcopy/pbpaste) won't work on WSL
+  - Battery information may not be available on desktop systems
+  - Some system details may differ from macOS
 
 **macOS-specific features:**
 - Clipboard operations (pbcopy/pbpaste)
 - Some system information details
+- Battery status on laptops
 
 ## Installation Methods
 

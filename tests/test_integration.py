@@ -8,9 +8,11 @@ import sys
 def run_command(cmd):
     """Run a CLI command and return success status."""
     try:
+        # Split command into list for security (avoid shell injection)
+        cmd_list = cmd.split()
         result = subprocess.run(
-            cmd,
-            shell=True,
+            cmd_list,
+            shell=False,
             capture_output=True,
             text=True,
             timeout=10

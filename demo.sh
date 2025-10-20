@@ -65,11 +65,12 @@ echo ""
 
 echo "8. Compare Files Demo"
 echo "--------------------"
-echo "This is a test file" > /tmp/test1.txt
-echo "This is a test file" > /tmp/test2.txt
+# Create temporary files in current directory for portability
+echo "This is a test file" > test1.txt
+echo "This is a test file" > test2.txt
 echo "Creating identical test files..."
-$CLI utils compare /tmp/test1.txt /tmp/test2.txt
-rm /tmp/test1.txt /tmp/test2.txt
+$CLI utils compare test1.txt test2.txt
+rm test1.txt test2.txt
 echo ""
 read -p "Press Enter to continue..."
 echo ""
@@ -77,7 +78,9 @@ echo ""
 echo "9. Network Port Check"
 echo "--------------------"
 echo "Checking localhost:22 (SSH)..."
-$CLI network checkport localhost 22 2>&1 || true
+if ! $CLI network checkport localhost 22 2>&1; then
+    echo "(Port may be closed or SSH not running)"
+fi
 echo ""
 read -p "Press Enter to continue..."
 echo ""
