@@ -238,3 +238,73 @@ def setclipboard(text):
     except subprocess.CalledProcessError as e:
         click.echo(f"Error setting clipboard: {e}", err=True)
         return 1
+
+
+@utils.command()
+@click.argument('script_path', type=click.Path(exists=True))
+@click.option('--interpreter', '-i', help='Interpreter to use (e.g., python3, bash, node)')
+@click.option('--args', '-a', multiple=True, help='Arguments to pass to the script')
+def runscript(script_path, interpreter, args):
+    """Run a script file with the appropriate interpreter.
+    
+    Automatically detects script type from extension or shebang line.
+    Supports Python, Bash, Shell, Node.js, Ruby, Perl, and more.
+    Use --interpreter to override automatic detection.
+    """
+    script_path = os.path.abspath(script_path)
+    
+    # Determine interpreter if not specified
+    if not interpreter:
+        # Try to detect from shebang
+        try:
+            with open(script_path, 'r') as f:
+                first_line = f.readline().strip()
+                if first_line.startswith('#!'):
+                    # Extract interpreter from shebang
+                    shebang = first_line[2:].strip()
+                    # Handle "#!/usr/bin/env python3" format
+                    if 'env' in shebang:
+                        interpreter = shebang.split()[-1]
+                    else:
+                        interpreter = os.path.basename(shebang)
+                    click.echo(f"Detected interpreter from shebang: {interpreter}")
+        except Exception:
+            pass
+        
+        # If no shebang, try to detect from extension
+        if not interpreter:
+            ext = os.path.splitext(script_path)[1].lower()
+            extension_map = {
+                '.py': 'python3',
+                '.sh': 'bash',
+                '.bash': 'bash',
+                '.js': 'node',
+                '.rb': 'ruby',
+                '.pl': 'perl',
+                '.php': 'php',
+            }
+            interpreter = extension_map.get(ext, 'bash')
+            click.echo(f"Detected interpreter from extension: {interpreter}")
+    
+    click.echo(f"Running: {script_path}")
+    if args:
+        click.echo(f"Arguments: {' '.join(args)}")
+    click.echo("")
+    
+    # Build command
+    cmd = [interpreter, script_path] + list(args)
+    
+    try:
+        # Run the script
+        result = subprocess.run(cmd, capture_output=False, text=True)
+        return result.returncode
+    except FileNotFoundError:
+        click.echo(f"Error: Interpreter '{interpreter}' not found", err=True)
+        click.echo(f"Try specifying a different interpreter with --interpreter", err=True)
+        return 1
+    except KeyboardInterrupt:
+        click.echo("\n\nScript execution interrupted by user.")
+        return 130
+    except Exception as e:
+        click.echo(f"Error running script: {e}", err=True)
+        return 1

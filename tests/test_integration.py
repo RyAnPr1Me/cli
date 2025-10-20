@@ -45,6 +45,7 @@ def test_cli():
         ("python3 -m mcli.cli utils --help", "Test utils help"),
         ("python3 -m mcli.cli utils hash 'test'", "Test hash"),
         ("python3 -m mcli.cli utils tree /tmp --depth 1", "Test tree"),
+        ("python3 -m mcli.cli utils runscript --help", "Test runscript help"),
         
         # Network (basic checks)
         ("python3 -m mcli.cli network --help", "Test network help"),

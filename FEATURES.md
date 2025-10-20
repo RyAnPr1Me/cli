@@ -254,6 +254,19 @@ User space refers to the portion of system memory and resources that are accessi
 - Uses pbcopy/pbpaste (user accessible)
 - No accessibility permissions needed
 
+#### Script Runner
+- Execute scripts with automatic interpreter detection
+- Support for Python, Bash, Shell, Node.js, Ruby, Perl, PHP
+- Detects interpreter from shebang or file extension
+- Pass arguments to scripts
+- Override interpreter if needed
+
+**User Space Benefits:**
+- No need for manual shebang setup
+- Works with any user-installed interpreters
+- Safe execution in user context
+- Support for multiple scripting languages
+
 ## Security Considerations
 
 ### What This Tool Can Do
@@ -325,6 +338,26 @@ While designed for macOS, most features work on:
 ./install.sh
 ```
 Installs to `~/.local/bin` - no root needed!
+
+### macOS Application Bundle
+```bash
+./create-app-bundle.sh
+```
+Creates a `macOS-CLI-Tools.app` that can be:
+- Installed to ~/Applications folder (no admin rights needed)
+- Opened from Finder (launches Terminal with CLI help)
+- Used alongside command-line installation
+
+This is useful for users who:
+- Prefer GUI applications
+- Want easy access from Launchpad/Spotlight
+- Need to distribute to non-technical users
+
+The app bundle includes:
+- Complete Python package embedded
+- Automatic dependency installation
+- Terminal launcher with help text
+- Standard macOS .app structure
 
 ### System Wide (Requires sudo)
 ```bash

@@ -273,6 +273,28 @@ Copy text to clipboard:
 mcli utils setclipboard "Hello, World!"
 ```
 
+### Run Scripts
+
+Run a Python script:
+```bash
+mcli utils runscript myscript.py
+```
+
+Run a Bash script with arguments:
+```bash
+mcli utils runscript script.sh --args "input.txt" --args "output.txt"
+```
+
+Run script with explicit interpreter:
+```bash
+mcli utils runscript data.js --interpreter node
+```
+
+Run Ruby script:
+```bash
+mcli utils runscript process.rb --args "--verbose"
+```
+
 ## Combining Commands
 
 ### Find and Kill Process

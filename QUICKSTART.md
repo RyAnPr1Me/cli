@@ -73,6 +73,25 @@ mcli files diskusage ~/Documents --human --depth 2
 ```
 Shows disk space used by subdirectories in human-readable format.
 
+### 11. Run a Script
+```bash
+mcli utils runscript myscript.py
+```
+Executes a script with automatic interpreter detection from shebang or file extension.
+
+## Alternative Installation: macOS Application Bundle
+
+If you prefer a traditional macOS application:
+
+```bash
+./create-app-bundle.sh
+```
+
+This creates a `macOS-CLI-Tools.app` that you can:
+- Install to ~/Applications (no admin needed)
+- Open from Finder to launch Terminal with CLI
+- Use alongside the command-line tools
+
 ## Getting Help
 
 For any command, add `--help` to see detailed information:

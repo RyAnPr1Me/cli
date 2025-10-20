@@ -39,6 +39,7 @@ This CLI tool provides multiple categories of commands:
 - **base64** - Encode/decode base64
 - **clipboard** - Display clipboard contents (macOS)
 - **setclipboard** - Copy text to clipboard (macOS)
+- **runscript** - Run scripts with automatic interpreter detection
 
 ## Installation
 
@@ -57,6 +58,20 @@ The installer will:
 1. Install the package in `~/.local` (user space)
 2. Add the `mcli` command to your PATH
 3. No root/sudo privileges required!
+
+### macOS Application Bundle (Alternative)
+
+You can also create a macOS application bundle for installation to ~/Applications:
+
+```bash
+# Create and install the .app bundle
+./create-app-bundle.sh
+```
+
+This creates a `macOS-CLI-Tools.app` that can be:
+- Placed in ~/Applications folder (no admin rights needed)
+- Opened from Finder (launches Terminal with CLI help)
+- Used alongside the command-line installation
 
 ### Manual Installation
 
@@ -92,6 +107,21 @@ mcli system monitor --count 5              # Monitor resources
 mcli process list --sort memory            # List processes by memory
 mcli utils hash "my text"                  # Generate hashes
 mcli utils tree . --depth 3                # Display directory tree
+```
+
+### Run a script
+```bash
+mcli utils runscript myscript.py
+```
+
+### Run a script with arguments
+```bash
+mcli utils runscript script.sh --args "arg1" --args "arg2"
+```
+
+### Run with specific interpreter
+```bash
+mcli utils runscript myfile.txt --interpreter python3
 ```
 
 ## Examples
