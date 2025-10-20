@@ -74,9 +74,11 @@ cd cli
 ```
 
 The installer will:
-1. Install the package in `~/.local` (user space)
-2. Add the `mcli` command to your PATH
-3. No root/sudo privileges required!
+1. Create an isolated Python virtual environment in `~/.mcli`
+2. Install the package without any system-wide package pollution
+3. Offer to automatically add `mcli` to your PATH or create an alias
+4. Detect your shell (zsh/bash) and configure it appropriately
+5. No root/sudo privileges required!
 
 ### macOS Application Bundle (Alternative)
 
@@ -95,14 +97,21 @@ This creates a `macOS-CLI-Tools.app` that can be:
 ### Manual Installation
 
 ```bash
-# Install in user space with pip
-python3 -m pip install --user -e .
+# Create isolated virtual environment
+python3 -m venv ~/.mcli/venv
 
-# Make sure ~/.local/bin is in your PATH
-export PATH="$HOME/.local/bin:$PATH"
+# Install the package in the virtual environment
+~/.mcli/venv/bin/pip install -e .
+
+# Add to PATH (choose one option)
+# Option 1: Add to PATH
+export PATH="$HOME/.mcli/bin:$PATH"
+
+# Option 2: Create an alias
+alias mcli="$HOME/.mcli/bin/mcli"
 ```
 
-Add the PATH export to your `~/.zshrc` or `~/.bash_profile` to make it permanent.
+Add the PATH export or alias to your `~/.zshrc` or `~/.bash_profile` to make it permanent.
 
 ## Usage
 
@@ -259,10 +268,15 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Troubleshooting
 
 ### Command not found: mcli
-Make sure `~/.local/bin` is in your PATH:
+Make sure `~/.mcli/bin` is in your PATH or you have an alias configured:
 ```bash
-export PATH="$HOME/.local/bin:$PATH"
+# Option 1: Add to PATH
+export PATH="$HOME/.mcli/bin:$PATH"
+
+# Option 2: Create an alias
+alias mcli="$HOME/.mcli/bin/mcli"
 ```
+Then add the chosen option to your `~/.zshrc` or `~/.bash_profile` to make it permanent.
 
 ### Permission denied errors
 Some commands may not be able to access all files/processes due to macOS security restrictions. This is normal and expected in user space.
