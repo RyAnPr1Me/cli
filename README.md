@@ -41,6 +41,17 @@ This CLI tool provides multiple categories of commands:
 - **setclipboard** - Copy text to clipboard (macOS)
 - **runscript** - Run scripts with automatic interpreter detection
 
+### 🔐 Admin Workarounds
+- **hosts** - View /etc/hosts file without sudo
+- **dnsflush** - Flush DNS cache (user space alternative)
+- **portusage** - Show processes using network ports (like lsof -i)
+- **interfaces** - Show network interface info (like ifconfig)
+- **launchagents** - List user LaunchAgents
+- **defaults** - Read system preferences/defaults
+- **env** - Show environment variables
+- **services** - List running services (user accessible)
+- **sudocmds** - Show admin command alternatives
+
 ## Installation
 
 ### User Space Installation (No sudo required!)
@@ -156,6 +167,26 @@ mcli utils compare file1.txt file2.txt
 mcli utils tree ~/Projects --depth 3
 ```
 
+### View hosts file without sudo
+```bash
+mcli admin hosts
+```
+
+### Check which processes are using port 8080
+```bash
+mcli admin portusage --port 8080
+```
+
+### Show network interfaces (like ifconfig)
+```bash
+mcli admin interfaces
+```
+
+### Flush DNS cache (user space workaround)
+```bash
+mcli admin dnsflush
+```
+
 ## Working Around User Space Restrictions
 
 This tool is designed to work entirely in user space and handle common macOS restrictions:
@@ -166,6 +197,22 @@ This tool is designed to work entirely in user space and handle common macOS res
 4. **Network operations** - Uses unprivileged ports and standard network APIs
 5. **File system access** - Works within user's accessible directories
 6. **System information** - Gathers data from user-accessible APIs (psutil)
+
+### Admin Command Workarounds
+
+The `mcli admin` command group provides user-space alternatives to common admin commands:
+
+| Admin Command | User Space Alternative | Description |
+|---------------|----------------------|-------------|
+| `sudo cat /etc/hosts` | `mcli admin hosts` | View hosts file |
+| `sudo dscacheutil -flushcache` | `mcli admin dnsflush` | Flush DNS cache |
+| `sudo lsof -i` | `mcli admin portusage` | Show port usage |
+| `ifconfig` | `mcli admin interfaces` | Network interfaces |
+| `sudo launchctl list` | `mcli admin services` | List services |
+| `ls /Library/LaunchAgents` | `mcli admin launchagents` | User agents |
+| `defaults read <domain>` | `mcli admin defaults <domain>` | Read preferences |
+
+Run `mcli admin sudocmds` to see a complete list of admin command alternatives.
 
 ## Requirements
 

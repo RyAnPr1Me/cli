@@ -208,6 +208,78 @@ User space refers to the portion of system memory and resources that are accessi
 - No system utilities needed
 - Cross-platform
 
+### 6. Admin Workarounds
+
+#### Hosts File Access
+- View /etc/hosts without sudo
+- Read-only access for security
+- Syntax highlighting for entries
+
+**User Space Benefits:**
+- No admin rights needed to view
+- Safe read-only operation
+- Works on all Unix-like systems
+
+#### DNS Cache Flush
+- User space DNS cache clearing
+- Python socket cache flush
+- Information about system-level flush
+
+**User Space Benefits:**
+- Clears application-level caches
+- No sudo required
+- Provides instructions for full flush
+
+#### Port Usage
+- Show network connections
+- Process information per port
+- Alternative to `lsof -i`
+
+**User Space Benefits:**
+- Uses psutil for safe access
+- Shows user-accessible connections
+- No raw socket access needed
+
+#### Network Interfaces
+- Show all network interfaces
+- IP addresses and MAC addresses
+- Interface status and statistics
+
+**User Space Benefits:**
+- Alternative to `ifconfig`
+- No privileged access needed
+- Cross-platform compatible
+
+#### LaunchAgents Management
+- List user LaunchAgents
+- Check loaded status
+- Manage without sudo
+
+**User Space Benefits:**
+- User agents in ~/Library/LaunchAgents
+- No system daemon access needed
+- Can use with launchctl
+
+#### System Preferences
+- Read defaults/preferences
+- Access user and global settings
+- Query specific keys
+
+**User Space Benefits:**
+- Uses `defaults` command
+- Read-only access
+- No modification privileges needed
+
+#### Environment Variables
+- Display all env vars
+- User environment only
+- Modification instructions
+
+**User Space Benefits:**
+- Complete user environment access
+- No privilege escalation
+- Safe viewing
+
 #### Directory Tree
 - Visual directory structure
 - Configurable depth

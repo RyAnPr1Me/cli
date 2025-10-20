@@ -47,6 +47,11 @@ def test_cli():
         ("python3 -m mcli.cli utils tree /tmp --depth 1", "Test tree"),
         ("python3 -m mcli.cli utils runscript --help", "Test runscript help"),
         
+        # Admin commands
+        ("python3 -m mcli.cli admin --help", "Test admin help"),
+        ("python3 -m mcli.cli admin env", "Test admin env"),
+        ("python3 -m mcli.cli admin sudocmds", "Test admin sudocmds"),
+        
         # Network (basic checks)
         ("python3 -m mcli.cli network --help", "Test network help"),
     ]

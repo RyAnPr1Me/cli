@@ -79,6 +79,24 @@ mcli utils runscript myscript.py
 ```
 Executes a script with automatic interpreter detection from shebang or file extension.
 
+### 12. View Hosts File (No Sudo Needed)
+```bash
+mcli admin hosts
+```
+View /etc/hosts file without admin privileges.
+
+### 13. Check Port Usage
+```bash
+mcli admin portusage --port 8080
+```
+See which processes are using a specific port (like `lsof -i`).
+
+### 14. Admin Command Alternatives
+```bash
+mcli admin sudocmds
+```
+Shows a complete list of admin commands and their user-space alternatives.
+
 ## Alternative Installation: macOS Application Bundle
 
 If you prefer a traditional macOS application:

@@ -295,6 +295,86 @@ Run Ruby script:
 mcli utils runscript process.rb --args "--verbose"
 ```
 
+## Admin Workarounds
+
+### View Hosts File
+
+View /etc/hosts without sudo:
+```bash
+mcli admin hosts
+```
+
+### Flush DNS Cache
+
+User space DNS cache flush:
+```bash
+mcli admin dnsflush
+```
+
+### Port Usage
+
+Show which processes are using network ports:
+```bash
+mcli admin portusage
+```
+
+Show processes on specific port:
+```bash
+mcli admin portusage --port 8080
+```
+
+### Network Interfaces
+
+Show all network interfaces (like ifconfig):
+```bash
+mcli admin interfaces
+```
+
+### Environment Variables
+
+Display all environment variables:
+```bash
+mcli admin env
+```
+
+### System Preferences
+
+Read system defaults/preferences:
+```bash
+mcli admin defaults NSGlobalDomain
+```
+
+Read specific key:
+```bash
+mcli admin defaults com.apple.finder AppleShowAllFiles
+```
+
+### LaunchAgents
+
+List user LaunchAgents:
+```bash
+mcli admin launchagents
+```
+
+### Services
+
+List running services (user accessible):
+```bash
+mcli admin services
+```
+
+Show all services including system:
+```bash
+mcli admin services --all
+```
+
+### Admin Command Reference
+
+Show all admin command alternatives:
+```bash
+mcli admin sudocmds
+```
+
 ## Combining Commands
 
 ### Find and Kill Process

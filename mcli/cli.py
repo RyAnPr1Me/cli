@@ -2,7 +2,7 @@
 """Main CLI interface for macOS CLI Tools."""
 
 import click
-from mcli.commands import files, network, system, process, utils
+from mcli.commands import files, network, system, process, utils, admin
 
 
 @click.group()
@@ -19,6 +19,7 @@ def main(ctx):
 
 
 # Register command groups
+main.add_command(admin.admin)
 main.add_command(files.files)
 main.add_command(network.network)
 main.add_command(system.system)
