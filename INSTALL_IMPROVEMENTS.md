@@ -32,10 +32,18 @@ Created a wrapper script at `~/.mcli/bin/mcli` that:
 - Automatically activates the virtual environment
 - Calls the Python module with proper environment
 - Makes it transparent to the user
+- Resolves symlinks properly for maximum compatibility
 
 ```bash
 #!/usr/bin/env bash
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Resolve the actual script location, handling symlinks
+SOURCE="$0"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 VENV_DIR="$SCRIPT_DIR/../venv"
 exec "$VENV_DIR/bin/python" -m mcli.cli "$@"
 ```
