@@ -40,6 +40,14 @@ This CLI tool provides multiple categories of commands:
 - **clipboard** - Display clipboard contents (macOS)
 - **setclipboard** - Copy text to clipboard (macOS)
 - **runscript** - Run scripts with automatic interpreter detection
+- **runall** - Run all scripts in a directory (batch execution)
+- **grep** - Search for text in files (like grep command)
+- **download** - Download files from URLs
+- **urlencode** - URL encode/decode text
+- **zip** - Create zip archives
+- **unzip** - Extract zip archives
+- **json** - Parse and query JSON files
+- **transform** - Transform text (reverse, case changes)
 
 ### 🔐 Admin Workarounds
 - **hosts** - View /etc/hosts file without sudo

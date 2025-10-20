@@ -46,6 +46,8 @@ def test_cli():
         ("python3 -m mcli.cli utils hash 'test'", "Test hash"),
         ("python3 -m mcli.cli utils tree /tmp --depth 1", "Test tree"),
         ("python3 -m mcli.cli utils runscript --help", "Test runscript help"),
+        ("python3 -m mcli.cli utils grep --help", "Test grep help"),
+        ("python3 -m mcli.cli utils transform 'test' --upper", "Test transform"),
         
         # Admin commands
         ("python3 -m mcli.cli admin --help", "Test admin help"),

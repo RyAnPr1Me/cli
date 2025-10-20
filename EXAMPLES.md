@@ -295,6 +295,123 @@ Run Ruby script:
 mcli utils runscript process.rb --args "--verbose"
 ```
 
+Run all scripts in a directory:
+```bash
+mcli utils runall ~/scripts --pattern "*.sh"
+```
+
+Run all Python test scripts:
+```bash
+mcli utils runall ./tests --pattern "test_*.py" --interpreter python3
+```
+
+### Text Processing
+
+Search for text in files (like grep):
+```bash
+mcli utils grep "error" /var/log/*.log
+```
+
+Search with line numbers:
+```bash
+mcli utils grep "TODO" *.py --line-numbers
+```
+
+Case-insensitive search:
+```bash
+mcli utils grep "warning" *.log --ignore-case
+```
+
+Count matches:
+```bash
+mcli utils grep "failed" *.log --count
+```
+
+### File Operations
+
+Create zip archive:
+```bash
+mcli utils zip file1.txt file2.txt docs/ myarchive.zip
+```
+
+Create compressed archive:
+```bash
+mcli utils zip *.pdf backup.zip --compress
+```
+
+Extract archive:
+```bash
+mcli utils unzip archive.zip ./extracted
+```
+
+### Network Operations
+
+Download a file:
+```bash
+mcli utils download https://example.com/data.json
+```
+
+Download with custom name:
+```bash
+mcli utils download https://example.com/file.zip myfile.zip
+```
+
+Download with progress:
+```bash
+mcli utils download https://example.com/large.iso --show-progress
+```
+
+### JSON Processing
+
+View JSON file:
+```bash
+mcli utils json data.json --pretty
+```
+
+Query JSON data:
+```bash
+mcli utils json config.json --query "database.host"
+```
+
+Query array element:
+```bash
+mcli utils json users.json --query "users[0].email"
+```
+
+### Text Transformations
+
+Convert to uppercase:
+```bash
+mcli utils transform "hello world" --upper
+```
+
+Convert to lowercase:
+```bash
+mcli utils transform "HELLO WORLD" --lower
+```
+
+Reverse text:
+```bash
+mcli utils transform "hello" --reverse
+```
+
+Title case:
+```bash
+mcli utils transform "hello world" --title
+```
+
+### URL Operations
+
+URL encode:
+```bash
+mcli utils urlencode "hello world & test"
+```
+
+URL decode:
+```bash
+mcli utils urlencode "hello%20world" --decode
+```
+
 ## Admin Workarounds
 
 ### View Hosts File
