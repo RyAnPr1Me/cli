@@ -70,7 +70,16 @@ echo "Creating launcher script..."
 cat > "$BIN_WRAPPER" << 'EOF'
 #!/usr/bin/env bash
 # Wrapper script for mcli - activates virtual environment and runs command
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Resolve the actual script location, handling symlinks
+SOURCE="$0"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+
 VENV_DIR="$SCRIPT_DIR/../venv"
 exec "$VENV_DIR/bin/python" -m mcli.cli "$@"
 EOF
